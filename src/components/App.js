@@ -4,11 +4,13 @@ import Navbar from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
+import Create from './Create';
 
 //Declare IPFS
-const ipfsClient = require('ipfs-http-client')
-const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
 
+const ipfsClient = require('ipfs-http-client')
+const ipfs = ipfsClient('/ip4/127.0.0.1/tcp/5002/http') // leaving out the arguments will default to these values
 class App extends Component {
 
   async componentWillMount() {
@@ -78,15 +80,15 @@ class App extends Component {
 
   uploadVideo = title => {
     console.log("Submitting file to IPFS...")
-
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('IPFS result', result)
+
       if(error) {
         console.error(error)
         return
       }
-
+     
       this.setState({ loading: true })
       this.state.dvideo.methods.uploadVideo(result[0].hash, title).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
@@ -122,6 +124,9 @@ class App extends Component {
         <Navbar 
           account={this.state.account}
         />
+<BrowserRouter>
+    <Routes>
+      <Route path='/' element=
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
@@ -132,7 +137,20 @@ class App extends Component {
               currentHash={this.state.currentHash}
               currentTitle={this.state.currentTitle}
             />
-        }
+        } />
+        </Routes>
+  </BrowserRouter>
+<BrowserRouter>
+    <Routes>
+    <Route path="/create" element={<Create 
+              videos={this.state.videos}
+              uploadVideo={this.uploadVideo}
+              captureFile={this.captureFile}
+              changeVideo={this.changeVideo}
+              currentHash={this.state.currentHash}
+              currentTitle={this.state.currentTitle} />}/>
+      </Routes>
+      </BrowserRouter>
       </div>
     );
   }
