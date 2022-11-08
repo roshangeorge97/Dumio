@@ -12,7 +12,7 @@
 
 ## About The Project
 
-![Screenshot](dimeo_img.jpg)
+![Screenshot](dimeo_img.png)
 
 Dumio is a Video sharing and Social Media Platform similar to YouTube, but runs on Blockchain. Dumio is built for secure, and faster video sharing and broadcasting. Videos uploaded to Dumio are stored in a distributed manner through IPFS, which makes hackers lose their attack targets and makes data more secure.
 
