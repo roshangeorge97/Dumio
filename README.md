@@ -2,9 +2,9 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/roshangeorge97/Dumio">
- <img src="https://raw.githubusercontent.com/roshangeorge97/Dumio/src/video-camera.png" alt="Logo" width="110" height="80">
-  </a>
+
+![Screenshot](video-camera.png)
+
 
 <h3 align="center">Dumio - Decentralized Video sharing and Social Media platform</h3>
 
